@@ -54,7 +54,7 @@ def load_model(url, name):
 	return model
 
 
-SVD = load_model("resources\models\SVD.pkl","rb")
+SVD = load_model("resources\models\svd_model.pkl","rb")
 
 # App declaration
 def main():
@@ -127,14 +127,23 @@ def main():
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
         st.image('resources\imgs\gg.jpg',use_column_width=True)
-        st.write("Describe your winning approach on this page")
+        st.write('The objective is to construct a recommender system that employs content or collaborative filtering approaches to accurately forecast a users rating for a movie they have not watched, leveraging their past preferences. The aim is to develop a robust and effective solution that holds substantial economic potential, as it enables users to discover and engage with content aligned with their interests, ultimately driving revenue and fostering loyalty to the platform. For Both the collaborative and content-based filtering we implemented a few models to find a model that gives us the best rmse score which is a representation of your model performance. The model with the best rmse score was the singular value decomposition(SVD). The SVD performed better since it is very good at noise detection and does this by reducing the dimensions of a matrix in order to make certain subsequent matrix calculations simpler. By implementing SVD, which returned a very good RMSE score of 0.81 we can conclude that the algorithm implemented for our app is very good at movie recommendations.')
+        
     if  page_selection == "About Us":
         st.title("About Us")
-        st.write("[Meet the team>]")
-        st.write("What we do")
+        expander = st.expander("Meet The Team")
+        expander.image('resources\imgs\meet the team.png')
+        
     if  page_selection=="EDA":
         st.title("EDA")
         st.write("The following EDA was done prior to developing the reccomemder algorithm")
+        st.title("Average Ratings Distribution")
+        st.image('resources\imgs\Avarage Ratings Distributions.png',use_column_width=True)
+        st.title("Top 10 Genres")
+        st.image('resources\imgs\most pop genres.png',use_column_width=True)
+        st.title("Most Popular Movie")
+        st.image('resources\imgs\MostPopularMovie (1).png',use_column_width=True)
+        
     if  page_selection=="How It Works":
         st.title("How It Works")
         st.info("Simple Explanation")
@@ -144,6 +153,7 @@ def main():
         st.info("Complicated Explanation")
         expand = st.expander("See here for more info")
         expand.write('''This is a technical explanation on how the app works''')
+        st.image('resources\imgs\Schematic-representation-for-singular-value-decomposition-SVD-analysis.png',use_column_width=True)
 
     if  page_selection == "FAQs":    
         st.info("Frequently Asked Questions (FAQs) for the movie recommender App")
